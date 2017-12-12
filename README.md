@@ -1,4 +1,4 @@
-# UI React and webpack boilerplate, microServices using APIConnect
+# UI React, microServices using APIConnect
 
 
 Checkout this repo, install dependencies, then start the gulp process with the following:
