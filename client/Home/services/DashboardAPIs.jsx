@@ -1,5 +1,11 @@
+const apiCustomer = '/api/micro/customers'
+const apiProducts = '/api/micro/products'
 const options = {
-    method: 'GET'
+    method: 'GET',
+    credentials: 'same-origin',
+    headers: {
+        'Content-Type': 'application/json'
+    }
 }
 
 const checkStatus = (response) => {
@@ -15,9 +21,18 @@ const checkStatus = (response) => {
 
 const toJson = response => response.json()
 
-const getEventsAttendees = () => {
-  console.log("here2")
-  return fetch("/api/v1/getProducts", options)
+
+const getCustomers= () => {
+  return fetch(apiCustomer, options)
+  .then(checkStatus)
+  .then(toJson)
+    .then(data => {
+      return data
+    })
+}
+
+const getProducts= () => {
+  return fetch(apiProducts, options)
   .then(checkStatus)
   .then(toJson)
     .then(data => {
@@ -26,5 +41,6 @@ const getEventsAttendees = () => {
 }
 
 export {
-  getEventsAttendees
+  getCustomers,
+  getProducts
 }

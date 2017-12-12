@@ -17,10 +17,19 @@ const HomeData = (state = initialState, action) => {
           error: action.error,
           isLoading: false
         })
-    case types.LOAD_DATA_SUCCESS:
+    case types.LOAD_CUSTOMERS_DATA_SUCCESS:
       return Object.assign({}, state, {
-          data: action.data,
+          customers: action.data,
           isLoading: false
+        })
+    case types.LOAD_PRODUCTS_DATA_SUCCESS:
+      return Object.assign({}, state, {
+          products: action.data,
+          isLoading: false
+        })
+    case types.LOAD_DATA_REQUEST:
+      return Object.assign({}, state, {
+          isLoading: true
         })
     case types.LOAD_DATA_REQUEST:
       return Object.assign({}, state, {

@@ -9,3 +9,15 @@
 .welcome {
 	margin: 40px;
 }
+
+.customers {
+		width: 40%;
+		margin:40px;
+}
+.sectionHeader {
+    width: 290px;
+    color: #429ab7;
+    background-color: #c4e3ed;
+    margin-left: 40px;
+    padding:10px;
+}

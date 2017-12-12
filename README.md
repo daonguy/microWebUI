@@ -1,11 +1,11 @@
-# UI React and webpack boilerplate
+# UI React and webpack boilerplate, microServices using APIConnect
 
 
 Checkout this repo, install dependencies, then start the gulp process with the following:
 
 ```
-	> git clone git@github.com:daon/reactBoilerPlate.git
-	> cd reactBoilerPlate
+	> git clone git@github.com:daon/microWebUI.git
+	> cd microWebUI
 	> npm install
 	> npm start
 ```

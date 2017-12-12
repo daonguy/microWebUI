@@ -1,13 +1,25 @@
 import fetch from 'whatwg-fetch'
 import * as types from '../constants/ActionTypes'
+import * as DashboardAPIs from '../services/DashboardAPIs'
 
 
-const loadData = () => {
+const loadCustomersData = () => {
   return dispatch => {
     dispatch(loadDataRequest())
-    return DashboardAPI.getEventsAttendees().then(
+    return DashboardAPIs.getCustomers().then(
 
-      json => dispatch(loadDataSuccess(json)),
+      json => dispatch(loadCustomersDataSuccess(json)),
+      error => dispatch(loadDataFailure(error))
+    )
+  }
+}
+
+const loadProductsData = () => {
+  return dispatch => {
+    dispatch(loadDataRequest())
+    return DashboardAPIs.getProducts().then(
+
+      json => dispatch(loadProductsDataSuccess(json)),
       error => dispatch(loadDataFailure(error))
     )
   }
@@ -17,9 +29,15 @@ const loadDataRequest = () => {
     type: types.LOAD_DATA_REQUEST
   }
 }
-const loadDataSuccess = (data) => {
+const loadCustomersDataSuccess = (data) => {
   return {
-    type: types.LOAD_DATA_SUCCESS,
+    type: types.LOAD_CUSTOMERS_DATA_SUCCESS,
+    data
+  }
+}
+const loadProductsDataSuccess = (data) => {
+  return {
+    type: types.LOAD_PRODUCTS_DATA_SUCCESS,
     data
   }
 }
@@ -30,5 +48,6 @@ const loadDataFailure = (error) => {
   }
 }
 export const actions = {
-  loadData
+  loadCustomersData,
+  loadProductsData
 }

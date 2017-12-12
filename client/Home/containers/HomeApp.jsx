@@ -13,11 +13,64 @@ class HomeApp extends Component {
     	super(props)
   	}
 
+
+  componentWillMount = () => {
+    this.props.actions.loadCustomersData()
+    this.props.actions.loadProductsData()
+  };
+
   render = () => {
+
+      const renderCustomers = (this.props.customers && this.props.customers.length > 0 ) ? this.props.customers.map(customer=>{
+          return (
+                  <tr>
+                    <td>{customer.name}</td>
+                    <td>{customer.status}</td>
+                  </tr>
+                  )
+      }) : ""
+
+      const renderProducts = (this.props.products && this.props.products.length > 0 ) ? this.props.products.map(product=>{
+          return (
+                  <tr>
+                    <td>{product.name}</td>
+                    <td>{product.status}</td>
+                  </tr>
+                  )
+      }) : ""
+
+      const tableClasses = `table ${styles.customers}`
 	    return (
 	      <div className={styles.body}>
           <Header title="Dashboard"/>
           <div className={styles.welcome}>WELCOME to Dao React UI boiler Plate</div>
+
+          <div className={styles.sectionHeader}><span>Customers</span></div>
+          <table className={tableClasses}>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderCustomers}
+              </tbody>
+            </table>
+
+
+          <div className={styles.sectionHeader}><span>Products</span></div>
+          <table className={tableClasses}>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderProducts}
+              </tbody>
+            </table>
 	      </div>
 	    );
   }
@@ -26,9 +79,10 @@ class HomeApp extends Component {
 function mapStateToProps(state) {
   // map state (from reducers) to props for the React app.
   // usually this is 1-to-1.
-  const { data, isLoading } = state
+  const { customers, products, isLoading } = state
   return {
-    data,
+    customers,
+    products,
     isLoading
   }
 }

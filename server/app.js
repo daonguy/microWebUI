@@ -5,12 +5,17 @@ var path = require('path');
 var webpack = require('webpack');
 var config = require('../webpack.config');
 
+var proxiesAPIConnect = require('./proxiesAPIConnect.js')();
+
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 app.use(bodyParser.json());
 
+
+//Add proxies to API Connect
+proxiesAPIConnect.setUp(app)
 
 var compiler = webpack(config);
 app.use(require('webpack-dev-middleware')(compiler, {
